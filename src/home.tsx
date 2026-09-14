@@ -1,4 +1,12 @@
 import { useState, useEffect } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Service {
@@ -72,60 +80,60 @@ const SERVICES: Service[] = [
 
 const CASE_STUDIES: CaseStudy[] = [
   {
-    client: "Savanna Logistics",
-    industry: "Transport & Logistics",
-    result: "Fleet tracking platform cut fuel costs by 34%",
+    client: "Pops and Petals",
+    industry: "Event Organizers",
+    result: "Robust bookings and reservations boosted service delivery by 34%",
     metric: "34%",
-    metricLabel: "Cost Reduction",
+    metricLabel: "Value Addition",
   },
   {
-    client: "AgroLink Kenya",
-    industry: "AgriTech",
-    result: "Farmer-facing USSD + web portal reached 12,000 users in 3 months",
-    metric: "12K",
-    metricLabel: "Users in 90 Days",
+    client: "Aetech Labs",
+    industry: "Software",
+    result: "Partership increased company productivity by a 15% margin",
+    metric: "15%",
+    metricLabel: "Higher productivity",
   },
   {
-    client: "PesaEdge Finance",
-    industry: "FinTech",
-    result: "Loan origination system reduced approval time from 5 days to 4 hours",
-    metric: "95%",
-    metricLabel: "Faster Approvals",
+    client: "LIGI",
+    industry: "Sports",
+    result: "Influx of users for the platform, 500+ daily active users with new ones joining at a rate of 8% weekly",
+    metric: "500+",
+    metricLabel: "More users",
   },
 ];
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    name: "Amina Wanjiku",
+    name: "Margaret Kado",
     role: "CEO",
-    company: "Savanna Logistics",
+    company: "Pops and Petals",
     quote:
       "Jamii SoTech didn't just build software — they understood our operations and built something that actually changed how we work.",
-    initials: "AW",
+    initials: "MK",
   },
   {
-    name: "David Otieno",
+    name: "George K. Chesire",
+    role: "CEO",
+    company: "Aetech Labs",
+    quote:
+      "The team delivered on time, on budget, and the code quality is exceptional. We've collaborated on two more projects with them since.",
+    initials: "GC",
+  },
+  {
+    name: "Ithiel Nyaga",
     role: "CTO",
-    company: "PesaEdge Finance",
+    company: "LIGI Kenya",
     quote:
-      "The team delivered on time, on budget, and the code quality is exceptional. We've built two more projects with them since.",
-    initials: "DO",
-  },
-  {
-    name: "Fatuma Hassan",
-    role: "Product Lead",
-    company: "AgroLink Kenya",
-    quote:
-      "They took a vague idea and turned it into a product our farmers love. That kind of empathy for end users is rare.",
-    initials: "FH",
+      "Ever since we partnered with Jamii SoTech, we've seen growth in terms of users for our turf booking platform. Kudos to the team!",
+    initials: "IN",
   },
 ];
 
 const STATS = [
-  { value: "50+", label: "Projects Delivered" },
+  { value: "10+", label: "Projects Delivered" },
   { value: "98%", label: "Client Retention" },
-  { value: "6+", label: "Years in Market" },
-  { value: "15+", label: "Team Members" },
+  { value: "2", label: "Years in Market" },
+  { value: "10+", label: "Team Members" },
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
@@ -140,41 +148,75 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const links = ["Services", "Work", "About", "Contact"];
+  const simpleLinks = ["Work", "About", "Contact"];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-neutral-950/95 backdrop-blur-md border-b border-red-900/30 shadow-lg shadow-red-950/10"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-3 left-5 right-5 z-50 transition-all duration-300 mx-5 mt-2 ${scrolled
+        ? "bg-neutral-950/95 backdrop-blur-md border-b border-red-900/30 shadow-lg shadow-red-950/10"
+        : "bg-transparent"
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="w-full px-10 lg:px-16 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-red-600 rotate-45 flex items-center justify-center">
-            <span className="text-white text-xs font-bold -rotate-45">JS</span>
-          </div>
+          <img src="src/assets/jamii_logo_final-digital (Edited).jpg" alt="logo" className="border-1 rounded-2xl" width={50} height={50} />
           <span className="text-white font-bold text-lg tracking-widest uppercase">
             Jamii <span className="text-red-500">SoTech</span>
           </span>
         </div>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="text-neutral-400 hover:text-red-400 text-sm tracking-widest uppercase transition-colors"
-            >
-              {l}
-            </a>
-          ))}
+        {/* Desktop nav — shadcn NavigationMenu */}
+        <div className="hidden md:flex items-center gap-20">
+          <NavigationMenu viewport={false}>
+            <NavigationMenuList className="gap-6">
+              {/* Services — with dropdown */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  className="bg-transparent text-neutral-400 hover:text-red-400 hover:bg-transparent focus:bg-transparent data-popup-open:bg-transparent data-popup-open:hover:bg-transparent data-open:bg-transparent data-open:hover:bg-transparent data-open:focus:bg-transparent text-sm tracking-widest uppercase rounded-none px-6 py-2 h-auto font-medium"
+                >
+                  Services
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-neutral-950 border border-neutral-800 rounded-none !rounded-none shadow-2xl shadow-red-950/20 p-0 min-w-[540px] -left-48">
+                  <div className="grid grid-cols-2 gap-2 bg-neutral-950 p-2">
+                    {SERVICES.map((s) => (
+                      <NavigationMenuLink
+                        key={s.title}
+                        href="#services"
+                        className="block bg-neutral-950 hover:bg-neutral-900 p-5 border-rounded transition-colors group"
+                      >
+                        <div>
+                          <div className="text-white font-semibold text-sm mb-1 tracking-wide">
+                            {s.title}
+                          </div>
+                          <p className="text-neutral-500 text-xs leading-relaxed line-clamp-2">
+                            {s.description}
+                          </p>
+                        </div>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Simple links */}
+              {simpleLinks.map((l) => (
+                <NavigationMenuItem key={l}>
+                  <NavigationMenuLink
+                    href={`#${l.toLowerCase()}`}
+                    className="text-neutral-400 hover:text-red-400 hover:bg-transparent focus:bg-transparent text-sm tracking-widest uppercase rounded-none px-6 py-2 h-auto font-medium transition-colors"
+                  >
+                    {l}
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+
+          {/* CTA button */}
           <a
             href="#contact"
-            className="bg-red-600 hover:bg-red-500 text-white px-5 py-2 text-sm tracking-widest uppercase transition-colors"
+            className="bg-red-600 hover:bg-red-500 text-white px-5 py-2 text-sm tracking-widest uppercase transition-colors ml-4"
           >
             Get Started
           </a>
@@ -201,7 +243,14 @@ function NavBar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-neutral-950 border-t border-red-900/30 px-6 py-4 flex flex-col gap-4">
-          {links.map((l) => (
+          <a
+            href="#services"
+            className="text-neutral-300 text-sm tracking-widest uppercase"
+            onClick={() => setMenuOpen(false)}
+          >
+            Services
+          </a>
+          {simpleLinks.map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
@@ -252,7 +301,7 @@ function HeroSection() {
         <div className="w-px h-24 bg-red-800" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+      <div className="relative max-w-7xl mx-auto px-10 py-20 pt-28 sm:px-14 sm:py-24 sm:pt-32 md:px-20 md:py-28 lg:px-28 lg:py-32 xl:pl-44 lg:-right-10">
         <div className="max-w-4xl">
           {/* Eyebrow */}
           <div className="flex items-center gap-4 mb-12">
@@ -263,45 +312,59 @@ function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight text-white mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight md:leading-none tracking-tight text-white mb-6 sm:mb-8 md:mb-10">
             We Build{" "}
             <span className="relative inline-block">
               <span className="text-red-500">Software</span>
-              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-red-600" />
+              <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-red-600" />
             </span>
             <br />
             That Solves{" "}
             <span className="text-neutral-400">Real</span>
             <br />
             <span className="text-neutral-300">African Problems.</span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-neutral-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-16">
-            Jamii SoTech LTD is a full-service technology company delivering
-            custom software, AI automation, and cloud infrastructure to
-            ambitious businesses across the continent.
-          </p>
+          </h1><br />
+          {/* Mission and vision */}
+          <div className="flex items-center gap-6 mb-8">
+            <div className="h-px w-12 bg-red-600" />
+            <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
+              Our Mission
+            </span>
+          </div>
+          {/* Mission */}
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-10 sm:mb-12 md:mb-16">
+            To provide practical, scalable and lasting solutions within the context of technology - not only in software development but also various technical know-hows that will aid in building and maintaining systems primarily focused on the African Society
+          </p><br />
+          <div className="flex items-center gap-6 mb-8">
+            <div className="h-px w-12 bg-red-600" />
+            <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
+              Our Vision
+            </span>
+          </div>
+          {/* Vision */}
+          <p className="text-neutral-400 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed mb-10 sm:mb-12 md:mb-16">
+            To partner and collaborate with various shareholders within African societies inorder to come up with long-term solutions that will improve quality of life within the continent and ultimately beyond - hence "Jamii"
+          </p><br />
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-6 mb-20">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 mb-14 sm:mb-16 md:mb-20">
             <a
               href="#contact"
-              className="group bg-red-600 hover:bg-red-500 text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-200 flex items-center gap-3"
+              className="group bg-red-600 hover:bg-red-500 text-white px-6 sm:px-8 py-3 sm:py-4 text-sm tracking-widest uppercase transition-all duration-200 flex items-center justify-center gap-3"
             >
               Start a Project
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
             <a
               href="#work"
-              className="border border-neutral-700 hover:border-red-600 text-neutral-300 hover:text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-200"
+              className="border border-neutral-700 hover:border-red-600 text-neutral-300 hover:text-white px-6 sm:px-8 py-3 sm:py-4 text-sm tracking-widest uppercase transition-all duration-200 text-center"
             >
               View Our Work
             </a>
-          </div>
+          </div><br />
 
           {/* Stats row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-neutral-800 pt-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 border-t border-neutral-800 pt-10 sm:pt-12 md:pt-16">
             {STATS.map((s) => (
               <div key={s.label}>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1">
@@ -343,7 +406,7 @@ function ProblemSolutionSection() {
   ];
 
   return (
-    <section className="bg-neutral-950 relative overflow-hidden">
+    <section className="bg-neutral-950 relative overflow-hidden lg:-right-10">
       <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
@@ -355,13 +418,13 @@ function ProblemSolutionSection() {
           </span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-20 items-start mb-24">
+        <div className="grid md:grid-cols-2 gap-8 items-start mb-12">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               African businesses deserve{" "}
               <span className="text-red-500">better tech partners.</span>
             </h2>
-          </div>
+          </div><br />
           <div>
             <p className="text-neutral-400 text-lg leading-relaxed">
               Too many companies waste time and money on software that doesn't
@@ -373,36 +436,36 @@ function ProblemSolutionSection() {
         </div>
 
         {/* Problem/Solution grid */}
-        <div className="grid md:grid-cols-2 gap-px bg-neutral-800">
+        <div className="grid md:grid-cols-2 bg-neutral-800">
           {problems.map((item, i) => (
             <div key={i} className="bg-neutral-950 p-12 group hover:bg-neutral-900 transition-colors">
-              <div className="flex items-start gap-6 mb-6">
-                <div className="w-6 h-6 rounded-full bg-red-950 border border-red-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="flex items-start gap-6 mb-10">
+                <div className="w-4 h-4 rounded-full bg-red-950 border border-red-800 flex items-center justify-center flex-shrink-0">
                   <span className="text-red-500 text-xs">✕</span>
                 </div>
                 <p className="text-neutral-500 text-sm leading-relaxed line-through decoration-red-900">
                   {item.pain}
                 </p>
-              </div>
+              </div><br />
               <div className="flex items-start gap-6">
-                <div className="w-6 h-6 rounded-full bg-orange-950 border border-orange-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-4 h-4 rounded-full bg-orange-950 border border-orange-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-orange-400 text-xs">✓</span>
                 </div>
                 <p className="text-neutral-200 text-sm leading-relaxed">
                   {item.fix}
                 </p>
-              </div>
+              </div><br />
             </div>
           ))}
         </div>
-      </div>
+      </div><br />
     </section>
   );
 }
 
 function ServicesSection() {
   return (
-    <section id="services" className="bg-neutral-900 relative overflow-hidden">
+    <section id="services" className="bg-neutral-950 relative overflow-hidden -right-10">
       {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-5"
@@ -425,13 +488,13 @@ function ServicesSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-white max-w-xl leading-tight">
             Core Services
           </h2>
-          <p className="text-neutral-400 max-w-xs text-sm leading-relaxed">
-            End-to-end technology capability — strategy through deployment,
-            under one roof.
-          </p>
         </div>
+        <p className="text-neutral-400 max-w-xs text-sm leading-relaxed">
+          End-to-end technology capability — strategy through deployment,
+          under one roof.
+        </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-800">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-800 ">
           {SERVICES.map((s, i) => (
             <div
               key={i}
@@ -458,7 +521,7 @@ function ServicesSection() {
               </div>
             </div>
           ))}
-        </div>
+        </div><br />
 
         <div className="mt-10 text-center">
           <a
@@ -475,7 +538,7 @@ function ServicesSection() {
 
 function CaseStudiesSection() {
   return (
-    <section id="work" className="bg-neutral-950 relative overflow-hidden">
+    <section id="work" className="bg-neutral-950 relative overflow-hidden -right-10">
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
@@ -522,7 +585,7 @@ function CaseStudiesSection() {
               </p>
             </div>
           ))}
-        </div>
+        </div><br />
 
         {/* Testimonials */}
         <div className="grid md:grid-cols-3 gap-8">
@@ -546,19 +609,19 @@ function CaseStudiesSection() {
             </div>
           ))}
         </div>
-      </div>
+      </div><br />
     </section>
   );
 }
 
 function TrustSection() {
   const logos = [
-    "Savanna Logistics",
-    "AgroLink Kenya",
-    "PesaEdge Finance",
-    "Kazi Works",
-    "NaboHealth",
-    "UjuziTech",
+    "Pops And Petals",
+    "Aetech Labs",
+    "LIGI Kenya",
+    "Kazi Log",
+    "Eden Care",
+    "Kijani AI",
   ];
 
   return (
@@ -592,7 +655,7 @@ function AboutSection() {
         J
       </div>
 
-      <div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+      <br /><div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32 -right-10">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div>
             <div className="flex items-center gap-6 mb-8">
@@ -615,14 +678,14 @@ function AboutSection() {
               "Jamii" means community in Swahili. We believe technology should
               serve communities — not just shareholders. Every line of code we
               write is in service of that belief.
-            </p>
+            </p><br />
 
             <div className="grid grid-cols-2 gap-10">
               {[
-                { label: "Founded", value: "2018" },
-                { label: "Headquarters", value: "Nairobi, KE" },
-                { label: "Team Size", value: "15+ Engineers" },
-                { label: "Projects Shipped", value: "50+" },
+                { label: "Founded", value: "2026" },
+                { label: "Headquarters", value: "Kajiado, KE" },
+                { label: "Team Size", value: "10+ Engineers" },
+                { label: "Projects Shipped", value: "5" },
               ].map((item) => (
                 <div key={item.label} className="border-l-2 border-red-700 pl-4">
                   <div className="text-neutral-500 text-xs tracking-widest uppercase mb-2">
@@ -631,7 +694,7 @@ function AboutSection() {
                   <div className="text-white font-semibold">{item.value}</div>
                 </div>
               ))}
-            </div>
+            </div><br />
           </div>
 
           {/* Values */}
@@ -684,7 +747,7 @@ function CTASection() {
   return (
     <section className="bg-red-700 relative overflow-hidden">
       {/* Noise-like overlay */}
-      <div
+      <br /><div
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage:
@@ -694,34 +757,36 @@ function CTASection() {
       />
       <div className="absolute -top-1/2 -right-1/4 w-[600px] h-[600px] bg-red-600/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-5xl mx-auto p-12 md:p-24 lg:p-32 text-center">
-        <div className="text-red-300 text-xs tracking-[0.4em] uppercase mb-10">
-          Ready to build?
+      <div className="relative w-full flex justify-center px-10 sm:px-14 md:px-20 lg:px-28 py-12 md:py-24 lg:py-32">
+        <div className="max-w-3xl text-center">
+          <div className="text-red-300 text-xs tracking-[0.4em] uppercase mb-10">
+            Ready to build?
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold text-white leading-none mb-10">
+            Let's ship something
+            <br />
+            <span className="text-red-200">remarkable.</span>
+          </h2>
+          <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-16">
+            Whether you have a fully-scoped brief or just an idea on a napkin —
+            we're ready to listen. Free discovery call, no commitment.
+          </p>
+          <div className="flex flex-wrap gap-6 justify-center">
+            <a
+              href="#contact"
+              className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 font-bold text-sm tracking-widest uppercase transition-colors"
+            >
+              Book a Free Discovery Call
+            </a>
+            <a
+              href="mailto:hello@jamiisotech.co.ke"
+              className="border border-red-400 text-white hover:bg-red-600 px-8 py-4 text-sm tracking-widest uppercase transition-colors"
+            >
+              hello@jamiisotech.org
+            </a>
+          </div>
         </div>
-        <h2 className="text-5xl md:text-7xl font-bold text-white leading-none mb-10">
-          Let's ship something
-          <br />
-          <span className="text-red-200">remarkable.</span>
-        </h2>
-        <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-16">
-          Whether you have a fully-scoped brief or just an idea on a napkin —
-          we're ready to listen. Free discovery call, no commitment.
-        </p>
-        <div className="flex flex-wrap gap-6 justify-center">
-          <a
-            href="#contact"
-            className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 font-bold text-sm tracking-widest uppercase transition-colors"
-          >
-            Book a Free Discovery Call
-          </a>
-          <a
-            href="mailto:hello@jamiisotech.co.ke"
-            className="border border-red-400 text-white hover:bg-red-600 px-8 py-4 text-sm tracking-widest uppercase transition-colors"
-          >
-            hello@jamiisotech.co.ke
-          </a>
-        </div>
-      </div>
+      </div><br />
     </section>
   );
 }
@@ -742,8 +807,8 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-neutral-950 relative">
-      <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+    <section id="contact" className="bg-neutral-950 relative -right-10">
+      <br /><div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
         <div className="grid md:grid-cols-2 gap-20">
           {/* Left info */}
           <div>
@@ -758,15 +823,15 @@ function ContactSection() {
             </h2>
             <p className="text-neutral-400 leading-relaxed mb-14">
               Drop us a line and our team will get back to you within 24 hours.
-              We're based in Nairobi but work with clients across the continent
+              We're based in Kajiado but work with clients across the continent
               and beyond.
             </p>
 
             <div className="space-y-8">
               {[
-                { label: "Email", value: "hello@jamiisotech.co.ke" },
-                { label: "Phone", value: "+254 700 000 000" },
-                { label: "Location", value: "Westlands, Nairobi, Kenya" },
+                { label: "Email", value: "hello@jamiisotech.org" },
+                { label: "Phone", value: "+254 140 69 55 22" },
+                { label: "Location", value: "Ongata Rongai, Kajiado, Kenya" },
                 { label: "Hours", value: "Mon–Fri, 8am–6pm EAT" },
               ].map((c) => (
                 <div key={c.label} className="flex items-start gap-4">
@@ -856,7 +921,7 @@ function ContactSection() {
             )}
           </div>
         </div>
-      </div>
+      </div><br />
     </section>
   );
 }
@@ -864,17 +929,14 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="bg-neutral-950 border-t border-neutral-900">
-      <div className="max-w-7xl mx-auto p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+      <br /><div className="max-w-7xl mx-auto p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-red-600 rotate-45 flex items-center justify-center">
-            <span className="text-white text-xs font-bold -rotate-45">JS</span>
-          </div>
           <span className="text-neutral-400 text-sm tracking-widest uppercase">
             Jamii SoTech LTD
           </span>
         </div>
         <div className="text-neutral-600 text-xs text-center">
-          © {new Date().getFullYear()} Jamii SoTech LTD. All rights reserved. · Nairobi, Kenya
+          © {new Date().getFullYear()} Jamii SoTech LTD. All rights reserved. · Kajiado, Kenya
         </div>
         <div className="flex gap-6">
           {["LinkedIn", "Twitter", "GitHub"].map((s) => (
@@ -887,7 +949,7 @@ function Footer() {
             </a>
           ))}
         </div>
-      </div>
+      </div><br />
     </footer>
   );
 }
