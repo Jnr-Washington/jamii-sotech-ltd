@@ -252,10 +252,10 @@ function HeroSection() {
         <div className="w-px h-24 bg-red-800" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
         <div className="max-w-4xl">
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-4 mb-12">
             <div className="h-px w-12 bg-red-600" />
             <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
               Nairobi · Kenya · East Africa
@@ -263,7 +263,7 @@ function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight text-white mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-none tracking-tight text-white mb-10">
             We Build{" "}
             <span className="relative inline-block">
               <span className="text-red-500">Software</span>
@@ -277,14 +277,14 @@ function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-neutral-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-12">
+          <p className="text-neutral-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-16">
             Jamii SoTech LTD is a full-service technology company delivering
             custom software, AI automation, and cloud infrastructure to
             ambitious businesses across the continent.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="flex flex-wrap gap-6 mb-20">
             <a
               href="#contact"
               className="group bg-red-600 hover:bg-red-500 text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-200 flex items-center gap-3"
@@ -301,7 +301,7 @@ function HeroSection() {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-neutral-800 pt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-neutral-800 pt-16">
             {STATS.map((s) => (
               <div key={s.label}>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1">
@@ -343,19 +343,19 @@ function ProblemSolutionSection() {
   ];
 
   return (
-    <section className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section className="bg-neutral-950 relative overflow-hidden">
       <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/30 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
         {/* Section header */}
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-6 mb-8">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             The Problem & Our Answer
           </span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start mb-20">
+        <div className="grid md:grid-cols-2 gap-20 items-start mb-24">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               African businesses deserve{" "}
@@ -375,8 +375,8 @@ function ProblemSolutionSection() {
         {/* Problem/Solution grid */}
         <div className="grid md:grid-cols-2 gap-px bg-neutral-800">
           {problems.map((item, i) => (
-            <div key={i} className="bg-neutral-950 p-8 group hover:bg-neutral-900 transition-colors">
-              <div className="flex items-start gap-4 mb-4">
+            <div key={i} className="bg-neutral-950 p-12 group hover:bg-neutral-900 transition-colors">
+              <div className="flex items-start gap-6 mb-6">
                 <div className="w-6 h-6 rounded-full bg-red-950 border border-red-800 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-red-500 text-xs">✕</span>
                 </div>
@@ -384,7 +384,7 @@ function ProblemSolutionSection() {
                   {item.pain}
                 </p>
               </div>
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-6">
                 <div className="w-6 h-6 rounded-full bg-orange-950 border border-orange-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-orange-400 text-xs">✓</span>
                 </div>
@@ -402,7 +402,7 @@ function ProblemSolutionSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="bg-neutral-900 py-28 relative overflow-hidden">
+    <section id="services" className="bg-neutral-900 relative overflow-hidden">
       {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-5"
@@ -413,15 +413,15 @@ function ServicesSection() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
+      <div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+        <div className="flex items-center gap-6 mb-8">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             What We Do
           </span>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-white max-w-xl leading-tight">
             Core Services
           </h2>
@@ -435,15 +435,15 @@ function ServicesSection() {
           {SERVICES.map((s, i) => (
             <div
               key={i}
-              className="bg-neutral-900 hover:bg-neutral-800 p-8 transition-colors group cursor-pointer"
+              className="bg-neutral-900 hover:bg-neutral-800 p-12 transition-colors group cursor-pointer"
             >
-              <div className="text-red-500 text-3xl mb-6 group-hover:text-orange-400 transition-colors">
+              <div className="text-red-500 text-3xl mb-8 group-hover:text-orange-400 transition-colors">
                 {s.icon}
               </div>
-              <h3 className="text-white font-bold text-lg mb-3 tracking-wide">
+              <h3 className="text-white font-bold text-lg mb-4 tracking-wide">
                 {s.title}
               </h3>
-              <p className="text-neutral-500 text-sm leading-relaxed mb-6">
+              <p className="text-neutral-500 text-sm leading-relaxed mb-8">
                 {s.description}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -475,30 +475,30 @@ function ServicesSection() {
 
 function CaseStudiesSection() {
   return (
-    <section id="work" className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section id="work" className="bg-neutral-950 relative overflow-hidden">
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/20 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
+      <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+        <div className="flex items-center gap-6 mb-8">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             Case Studies
           </span>
         </div>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 max-w-xl leading-tight">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-20 max-w-xl leading-tight">
           Proof in the work.
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {CASE_STUDIES.map((cs, i) => (
             <div
               key={i}
-              className="border border-neutral-800 hover:border-red-900 p-8 transition-all group"
+              className="border border-neutral-800 hover:border-red-900 p-12 transition-all group"
             >
               {/* Metric */}
-              <div className="mb-8">
-                <div className="text-5xl font-bold text-red-500 mb-1">
+              <div className="mb-10">
+                <div className="text-5xl font-bold text-red-500 mb-2">
                   {cs.metric}
                 </div>
                 <div className="text-neutral-500 text-xs tracking-widest uppercase">
@@ -507,14 +507,14 @@ function CaseStudiesSection() {
               </div>
 
               {/* Bar accent */}
-              <div className="h-px w-full bg-neutral-800 mb-6 relative overflow-hidden">
+              <div className="h-px w-full bg-neutral-800 mb-8 relative overflow-hidden">
                 <div className="absolute inset-y-0 left-0 w-2/3 bg-orange-600 group-hover:w-full transition-all duration-700" />
               </div>
 
-              <div className="text-neutral-500 text-xs tracking-widest uppercase mb-3">
+              <div className="text-neutral-500 text-xs tracking-widest uppercase mb-4">
                 {cs.industry}
               </div>
-              <h3 className="text-white font-bold text-base mb-3 leading-snug">
+              <h3 className="text-white font-bold text-base mb-4 leading-snug">
                 {cs.client}
               </h3>
               <p className="text-neutral-400 text-sm leading-relaxed">
@@ -525,11 +525,11 @@ function CaseStudiesSection() {
         </div>
 
         {/* Testimonials */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="bg-neutral-900 p-8">
-              <div className="text-red-700 text-4xl font-serif mb-4">"</div>
-              <p className="text-neutral-300 text-sm leading-relaxed mb-8 italic">
+            <div key={i} className="bg-neutral-900 p-12">
+              <div className="text-red-700 text-4xl font-serif mb-6">"</div>
+              <p className="text-neutral-300 text-sm leading-relaxed mb-10 italic">
                 {t.quote}
               </p>
               <div className="flex items-center gap-3">
@@ -562,14 +562,14 @@ function TrustSection() {
   ];
 
   return (
-    <section className="bg-neutral-900 py-20 border-y border-neutral-800">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-10">
+    <section className="bg-neutral-900 border-y border-neutral-800">
+      <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+        <div className="text-center mb-16">
           <p className="text-neutral-500 text-xs tracking-[0.4em] uppercase">
             Trusted by innovative companies across East Africa
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
           {logos.map((l) => (
             <div
               key={l}
@@ -586,38 +586,38 @@ function TrustSection() {
 
 function AboutSection() {
   return (
-    <section id="about" className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section id="about" className="bg-neutral-950 relative overflow-hidden">
       {/* Big decorative letter */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 text-[280px] font-bold text-neutral-900 select-none pointer-events-none leading-none hidden xl:block">
         J
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div className="relative max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+        <div className="grid md:grid-cols-2 gap-20 items-center">
           <div>
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-6 mb-8">
               <div className="h-px w-12 bg-red-600" />
               <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
                 About Us
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-10">
               Technology company.
               <br />
               <span className="text-neutral-500">African roots.</span>
             </h2>
-            <p className="text-neutral-400 leading-relaxed mb-6">
+            <p className="text-neutral-400 leading-relaxed mb-8">
               Jamii SoTech LTD was founded in Nairobi with a singular mission:
               to give African businesses access to world-class software
               engineering that actually understands their reality.
             </p>
-            <p className="text-neutral-400 leading-relaxed mb-10">
+            <p className="text-neutral-400 leading-relaxed mb-12">
               "Jamii" means community in Swahili. We believe technology should
               serve communities — not just shareholders. Every line of code we
               write is in service of that belief.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-10">
               {[
                 { label: "Founded", value: "2018" },
                 { label: "Headquarters", value: "Nairobi, KE" },
@@ -625,7 +625,7 @@ function AboutSection() {
                 { label: "Projects Shipped", value: "50+" },
               ].map((item) => (
                 <div key={item.label} className="border-l-2 border-red-700 pl-4">
-                  <div className="text-neutral-500 text-xs tracking-widest uppercase mb-1">
+                  <div className="text-neutral-500 text-xs tracking-widest uppercase mb-2">
                     {item.label}
                   </div>
                   <div className="text-white font-semibold">{item.value}</div>
@@ -635,7 +635,7 @@ function AboutSection() {
           </div>
 
           {/* Values */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             {[
               {
                 num: "01",
@@ -660,13 +660,13 @@ function AboutSection() {
             ].map((v) => (
               <div
                 key={v.num}
-                className="flex gap-6 p-6 bg-neutral-900 hover:bg-neutral-800 transition-colors"
+                className="flex gap-8 p-10 bg-neutral-900 hover:bg-neutral-800 transition-colors"
               >
                 <div className="text-red-700 font-bold text-sm tracking-widest flex-shrink-0 mt-0.5">
                   {v.num}
                 </div>
                 <div>
-                  <div className="text-white font-semibold mb-2">{v.title}</div>
+                  <div className="text-white font-semibold mb-3">{v.title}</div>
                   <div className="text-neutral-500 text-sm leading-relaxed">
                     {v.body}
                   </div>
@@ -682,7 +682,7 @@ function AboutSection() {
 
 function CTASection() {
   return (
-    <section className="bg-red-700 py-28 relative overflow-hidden">
+    <section className="bg-red-700 relative overflow-hidden">
       {/* Noise-like overlay */}
       <div
         className="absolute inset-0 opacity-10"
@@ -694,20 +694,20 @@ function CTASection() {
       />
       <div className="absolute -top-1/2 -right-1/4 w-[600px] h-[600px] bg-red-600/50 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-5xl mx-auto px-6 text-center">
-        <div className="text-red-300 text-xs tracking-[0.4em] uppercase mb-6">
+      <div className="relative max-w-5xl mx-auto p-12 md:p-24 lg:p-32 text-center">
+        <div className="text-red-300 text-xs tracking-[0.4em] uppercase mb-10">
           Ready to build?
         </div>
-        <h2 className="text-5xl md:text-7xl font-bold text-white leading-none mb-6">
+        <h2 className="text-5xl md:text-7xl font-bold text-white leading-none mb-10">
           Let's ship something
           <br />
           <span className="text-red-200">remarkable.</span>
         </h2>
-        <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-12">
+        <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-16">
           Whether you have a fully-scoped brief or just an idea on a napkin —
           we're ready to listen. Free discovery call, no commitment.
         </p>
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-6 justify-center">
           <a
             href="#contact"
             className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 font-bold text-sm tracking-widest uppercase transition-colors"
@@ -742,27 +742,27 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-neutral-950 py-28 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16">
+    <section id="contact" className="bg-neutral-950 relative">
+      <div className="max-w-7xl mx-auto p-12 md:p-24 lg:p-32">
+        <div className="grid md:grid-cols-2 gap-20">
           {/* Left info */}
           <div>
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-6 mb-8">
               <div className="h-px w-12 bg-red-600" />
               <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
                 Contact
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-10 leading-tight">
               Let's start a conversation.
             </h2>
-            <p className="text-neutral-400 leading-relaxed mb-10">
+            <p className="text-neutral-400 leading-relaxed mb-14">
               Drop us a line and our team will get back to you within 24 hours.
               We're based in Nairobi but work with clients across the continent
               and beyond.
             </p>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {[
                 { label: "Email", value: "hello@jamiisotech.co.ke" },
                 { label: "Phone", value: "+254 700 000 000" },
@@ -782,9 +782,9 @@ function ContactSection() {
           {/* Right form */}
           <div>
             {submitted ? (
-              <div className="border border-red-800 bg-red-950/30 p-12 text-center h-full flex flex-col items-center justify-center">
-                <div className="text-orange-400 text-5xl mb-6">✓</div>
-                <h3 className="text-white font-bold text-xl mb-3">
+              <div className="border border-red-800 bg-red-950/30 p-16 text-center h-full flex flex-col items-center justify-center">
+                <div className="text-orange-400 text-5xl mb-8">✓</div>
+                <h3 className="text-white font-bold text-xl mb-4">
                   Message received!
                 </h3>
                 <p className="text-neutral-400 text-sm">
@@ -792,7 +792,7 @@ function ContactSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {[
                   { id: "name", label: "Full Name", type: "text" },
                   { id: "email", label: "Email Address", type: "email" },
@@ -863,8 +863,8 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="bg-neutral-950 border-t border-neutral-900 py-10">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="bg-neutral-950 border-t border-neutral-900">
+      <div className="max-w-7xl mx-auto p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 bg-red-600 rotate-45 flex items-center justify-center">
             <span className="text-white text-xs font-bold -rotate-45">JS</span>
