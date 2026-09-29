@@ -160,7 +160,7 @@ function NavBar() {
       <div className="w-full px-10 lg:px-16 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src="src/assets/jamii_logo_final-digital (Edited).jpg" alt="logo" className="border-1 rounded-2xl" width={50} height={50} />
+          <img src="https://res.cloudinary.com/dr5v1kpqo/image/upload/v1790683668/jamii_logo_final-digital_po2wdl.jpg" alt="logo" className="border-1 rounded-2xl" width={50} height={50} />
           <span className="text-white font-bold text-lg tracking-widest uppercase">
             Jamii <span className="text-red-500">SoTech</span>
           </span>
