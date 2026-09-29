@@ -89,7 +89,7 @@ export const values: Value[] = [
 export const facts: { label: string; value: string }[] = [
   { label: 'Founded', value: '2026' },
   { label: 'Headquarters', value: 'Kajiado, KE' },
-  { label: 'Team size', value: '10+ engineers' },
+  { label: 'Team size', value: '5+ engineers' },
   { label: 'Projects shipped', value: '10+' },
 ];
 
@@ -129,7 +129,7 @@ function Header() {
 const stats = [
   { n: '10+', label: 'Projects delivered' },
   { n: '98%', label: 'Clients who stay' },
-  { n: '10+', label: 'Team members' },
+  { n: '5+', label: 'Team members' },
 ];
 
 function Hero() {
