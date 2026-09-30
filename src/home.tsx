@@ -63,12 +63,7 @@ export const results: Result[] = [
     quote: "Jamii SoTech didn't just build software. They understood our operations and built something that changed how we work.",
     name: 'Margaret Kado', initials: 'MK', role: 'CEO, Pops and Petals'
   },
-  {
-    stat: '15%', client: 'Aetech Labs', meta: 'Software · higher productivity',
-    summary: 'Our partnership lifted company productivity by a 15% margin.',
-    quote: "The team delivered on time, on budget, and the code quality is exceptional. We've since started two more projects with them.",
-    name: 'George K. Chesire', initials: 'GC', role: 'CEO, Aetech Labs'
-  },
+
   {
     stat: '500+', client: 'LIGI', meta: 'Sports · more users',
     summary: '500+ daily active users, with new ones joining at about 8% weekly.',
@@ -77,7 +72,7 @@ export const results: Result[] = [
   },
 ];
 
-export const clients: string[] = ['Pops and Petals', 'Aetech Labs', 'LIGI Kenya', 'Kazi Log', 'Eden Care', 'Kijani AI'];
+export const clients: string[] = ['Pops and Petals', 'LIGI Kenya', 'Kazi Log', 'Eden Care', 'Kijani AI'];
 
 export const values: Value[] = [
   { title: 'Context first', text: 'We learn your market, connectivity limits and user behavior before writing a single line.' },
