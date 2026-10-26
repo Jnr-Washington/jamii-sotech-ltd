@@ -128,3 +128,81 @@
     @apply font-sans scroll-smooth;
     }
 }
+/* ─── Leads dashboard (/admin) ───────────────────────────────────────────────
+   Brand tokens matching the homepage palette. Scoped to .jamii-admin so they
+   never leak into the marketing site. */
+@theme inline {
+    --color-ja-bg: var(--ja-bg);
+    --color-ja-surface: var(--ja-surface);
+    --color-ja-ink: var(--ja-ink);
+    --color-ja-muted: var(--ja-muted);
+    --color-ja-line: var(--ja-line);
+    --color-ja-tint: var(--ja-tint);
+    --color-ja-red: var(--ja-red);
+    --color-ja-red-deep: var(--ja-red-deep);
+    --color-ja-on-red: var(--ja-on-red);
+    --color-ja-series: var(--ja-series);
+    --color-ja-context: var(--ja-context);
+    --color-ja-grid: var(--ja-grid);
+    --color-ja-warn: var(--ja-warn);
+    --color-ja-good: var(--ja-good);
+}
+
+.jamii-admin {
+    color-scheme: light;
+    --ja-bg: #FFF8F6;
+    --ja-surface: #ffffff;
+    --ja-ink: #2A1416;
+    --ja-muted: #6B5254;
+    --ja-line: #F0D9D5;
+    --ja-tint: #FFE6E3;
+    --ja-red: #D7263D;
+    --ja-red-deep: #A61B2E;
+    --ja-on-red: #ffffff;
+    /* Chart marks: brand red validated against the surface (dataviz validator) */
+    --ja-series: #D7263D;
+    --ja-context: #D9C6C3;
+    --ja-grid: #F3E6E3;
+    /* Status: always paired with an icon + label */
+    --ja-warn: #975A00;
+    --ja-good: #1D7A3E;
+    background: var(--ja-bg);
+    color: var(--ja-ink);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .jamii-admin {
+        color-scheme: dark;
+        --ja-bg: #1D1112;
+        --ja-surface: #2A1A1C;
+        --ja-ink: #FFF1EE;
+        --ja-muted: #C9A9A5;
+        --ja-line: #45292C;
+        --ja-tint: #3A2023;
+        --ja-red: #FF5A6B;
+        --ja-red-deep: #8E1626;
+        --ja-on-red: #2A0D10;
+        --ja-series: #F24B5E;
+        --ja-context: #5C4245;
+        --ja-grid: #3A2528;
+        --ja-warn: #F4B740;
+        --ja-good: #4CC27A;
+    }
+}
+:root[data-theme="dark"] .jamii-admin {
+    color-scheme: dark;
+    --ja-bg: #1D1112;
+    --ja-surface: #2A1A1C;
+    --ja-ink: #FFF1EE;
+    --ja-muted: #C9A9A5;
+    --ja-line: #45292C;
+    --ja-tint: #3A2023;
+    --ja-red: #FF5A6B;
+    --ja-red-deep: #8E1626;
+    --ja-on-red: #2A0D10;
+    --ja-series: #F24B5E;
+    --ja-context: #5C4245;
+    --ja-grid: #3A2528;
+    --ja-warn: #F4B740;
+    --ja-good: #4CC27A;
+}

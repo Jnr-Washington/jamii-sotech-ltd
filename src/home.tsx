@@ -1,4 +1,5 @@
-import React, { useState, type ChangeEvent, type FormEvent } from 'react';
+import React, { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import { captureFirstTouch, getAttribution, trackCtaClicks } from './lib/attribution';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -105,7 +106,7 @@ function Header() {
             <li key={l.href}><a href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a></li>
           ))}
         </ul>
-        <a className="btn" href="#contact">Get started</a>
+        <a className="btn" href="#contact" data-cta="nav">Get started</a>
 
         <button
           className="mobile-menu-btn"
@@ -138,7 +139,7 @@ function Hero() {
             Because we work here too, we understand the constraints you build around.
           </p>
           <div className="cta">
-            <a className="btn" href="#contact">Start a project</a>
+            <a className="btn" href="#contact" data-cta="hero">Start a project</a>
             <a className="btn ghost" href="#work">See our work</a>
           </div>
           <div className="stats">
@@ -207,7 +208,7 @@ function Services() {
             </div>
           ))}
         </div>
-        <div className="more"><a className="btn ghost" href="#contact">Discuss your project</a></div>
+        <div className="more"><a className="btn ghost" href="#contact" data-cta="services">Discuss your project</a></div>
       </div>
     </section>
   );
@@ -289,15 +290,18 @@ function CtaBand() {
         Free discovery call, no commitment.
       </p>
       <div className="cta">
-        <a className="btn" href="#contact">Book a free discovery call</a>
+        <a className="btn" href="#contact" data-cta="cta-band">Book a free discovery call</a>
         <a className="btn ghost" href="mailto:hello@jamiisotech.org">hello@jamiisotech.org</a>
       </div>
     </div>
   );
 }
 
-interface FormState { name: string; email: string; company: string; service: string; message: string }
-const empty: FormState = { name: '', email: '', company: '', service: '', message: '' };
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
+
+interface FormState { name: string; email: string; company: string; service: string; message: string; website: string }
+const empty: FormState = { name: '', email: '', company: '', service: '', message: '', website: '' };
+type SubmitStatus = { kind: 'idle' | 'sending' | 'sent' } | { kind: 'error'; message: string };
 const serviceOptions = ['Software development', 'AI & automation', 'Cloud & DevOps', 'Digital strategy', 'UI/UX design', 'Data & analytics'];
 const info: [string, string][] = [
   ['Email', 'hello@jamiisotech.org'],
@@ -308,18 +312,33 @@ const info: [string, string][] = [
 
 function Contact() {
   const [form, setForm] = useState<FormState>(empty);
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>({ kind: 'idle' });
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setSent(false);
+    if (status.kind !== 'sending') setStatus({ kind: 'idle' });
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(form);
-    setSent(true);
-    setForm(empty);
+    setStatus({ kind: 'sending' });
+    try {
+      const res = await fetch(`${API_URL}/api/v1/inquiries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, source: getAttribution() }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const message = body.errors?.join(' ') || body.message || 'Something went wrong. Please try again.';
+        setStatus({ kind: 'error', message });
+        return;
+      }
+      setStatus({ kind: 'sent' });
+      setForm(empty);
+    } catch {
+      setStatus({ kind: 'error', message: "We couldn't reach our server. Please try again or email hello@jamiisotech.org." });
+    }
   };
 
   return (
@@ -356,8 +375,13 @@ function Contact() {
           <label>Tell us about your project
             <textarea name="message" value={form.message} onChange={onChange} placeholder="What are you hoping to build?" required />
           </label>
-          <button type="submit" className="btn">Send message</button>
-          {sent && <p className="ok" role="status">Thanks! We'll reply within 24 hours.</p>}
+          {/* Honeypot: hidden from people, filled in by bots */}
+          <input name="website" value={form.website} onChange={onChange} className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+          <button type="submit" className="btn" disabled={status.kind === 'sending'}>
+            {status.kind === 'sending' ? 'Sending…' : 'Send message'}
+          </button>
+          {status.kind === 'sent' && <p className="ok" role="status">Thanks! We'll reply within 24 hours.</p>}
+          {status.kind === 'error' && <p className="err" role="alert">{status.message}</p>}
         </form>
       </div>
     </section>
@@ -383,6 +407,11 @@ function Footer() {
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
 export default function JamiiSoTechHomepage() {
+  useEffect(() => {
+    captureFirstTouch();
+    return trackCtaClicks();
+  }, []);
+
   return (
     <>
       <style>{`
@@ -563,6 +592,9 @@ export default function JamiiSoTechHomepage() {
         .jamii-app .muted{color:var(--muted)}
         .jamii-app .mt-14{margin-top:14px}
         .jamii-app .ok{color:var(--red);font-weight:600}
+        .jamii-app .err{color:var(--ink);background:var(--tint);border-radius:14px;padding:10px 14px;font-size:.95rem}
+        .jamii-app .btn:disabled{opacity:.7;cursor:progress;transform:none}
+        .jamii-app .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
         
         @media (max-width:860px){
           .jamii-app .hero .wrap,.jamii-app .about .wrap,.jamii-app .contact .wrap,.jamii-app .split{grid-template-columns:1fr}
