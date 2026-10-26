@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import jamiiLogo from "./assets/jamii_logo_final.svg";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Service {
@@ -144,18 +145,21 @@ function NavBar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-neutral-950/95 backdrop-blur-md border-b border-red-900/30 shadow-lg shadow-red-950/10"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-red-600 rotate-45 flex items-center justify-center">
-            <span className="text-white text-xs font-bold -rotate-45">JS</span>
-          </div>
+          <img
+            src={jamiiLogo}
+            alt="Jamii SoTech logo"
+            className="h-10 w-auto md:h-12 object-contain"
+            style={{ maxWidth: "160px" }}
+          />
+
           <span className="text-white font-bold text-lg tracking-widest uppercase">
             Jamii <span className="text-red-500">SoTech</span>
           </span>
@@ -252,10 +256,10 @@ function HeroSection() {
         <div className="w-px h-24 bg-red-800" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <div className="relative max-w-7xl mx-auto px-6 pt-44 pb-32">
         <div className="max-w-4xl">
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-10">
             <div className="h-px w-12 bg-red-600" />
             <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
               Nairobi · Kenya · East Africa
@@ -284,7 +288,7 @@ function HeroSection() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="flex flex-wrap gap-4 mb-20">
             <a
               href="#contact"
               className="group bg-red-600 hover:bg-red-500 text-white px-8 py-4 text-sm tracking-widest uppercase transition-all duration-200 flex items-center gap-3"
@@ -301,7 +305,7 @@ function HeroSection() {
           </div>
 
           {/* Stats row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-neutral-800 pt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-neutral-800 pt-16">
             {STATS.map((s) => (
               <div key={s.label}>
                 <div className="text-3xl md:text-4xl font-bold text-white mb-1">
@@ -343,19 +347,19 @@ function ProblemSolutionSection() {
   ];
 
   return (
-    <section className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section className="bg-neutral-950 py-36 relative overflow-hidden">
       <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-4 mb-6">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             The Problem & Our Answer
           </span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-start mb-20">
+        <div className="grid md:grid-cols-2 gap-16 items-start mb-24">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               African businesses deserve{" "}
@@ -375,7 +379,7 @@ function ProblemSolutionSection() {
         {/* Problem/Solution grid */}
         <div className="grid md:grid-cols-2 gap-px bg-neutral-800">
           {problems.map((item, i) => (
-            <div key={i} className="bg-neutral-950 p-8 group hover:bg-neutral-900 transition-colors">
+            <div key={i} className="bg-neutral-950 p-10 group hover:bg-neutral-900 transition-colors">
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-6 h-6 rounded-full bg-red-950 border border-red-800 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-red-500 text-xs">✕</span>
@@ -402,7 +406,7 @@ function ProblemSolutionSection() {
 
 function ServicesSection() {
   return (
-    <section id="services" className="bg-neutral-900 py-28 relative overflow-hidden">
+    <section id="services" className="bg-neutral-900 py-36 relative overflow-hidden">
       {/* Subtle pattern */}
       <div
         className="absolute inset-0 opacity-5"
@@ -414,14 +418,14 @@ function ServicesSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-4 mb-6">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             What We Do
           </span>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-white max-w-xl leading-tight">
             Core Services
           </h2>
@@ -435,7 +439,7 @@ function ServicesSection() {
           {SERVICES.map((s, i) => (
             <div
               key={i}
-              className="bg-neutral-900 hover:bg-neutral-800 p-8 transition-colors group cursor-pointer"
+              className="bg-neutral-900 hover:bg-neutral-800 p-10 transition-colors group cursor-pointer"
             >
               <div className="text-red-500 text-3xl mb-6 group-hover:text-orange-400 transition-colors">
                 {s.icon}
@@ -460,7 +464,7 @@ function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-14 text-center">
           <a
             href="#contact"
             className="inline-flex items-center gap-3 text-red-500 hover:text-red-400 text-sm tracking-widest uppercase transition-colors"
@@ -475,26 +479,26 @@ function ServicesSection() {
 
 function CaseStudiesSection() {
   return (
-    <section id="work" className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section id="work" className="bg-neutral-950 py-36 relative overflow-hidden">
       <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-red-800/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-4 mb-6">
           <div className="h-px w-12 bg-red-600" />
           <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
             Case Studies
           </span>
         </div>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 max-w-xl leading-tight">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-20 max-w-xl leading-tight">
           Proof in the work.
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {CASE_STUDIES.map((cs, i) => (
             <div
               key={i}
-              className="border border-neutral-800 hover:border-red-900 p-8 transition-all group"
+              className="border border-neutral-800 hover:border-red-900 p-10 transition-all group"
             >
               {/* Metric */}
               <div className="mb-8">
@@ -525,9 +529,9 @@ function CaseStudiesSection() {
         </div>
 
         {/* Testimonials */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="bg-neutral-900 p-8">
+            <div key={i} className="bg-neutral-900 p-10">
               <div className="text-red-700 text-4xl font-serif mb-4">"</div>
               <p className="text-neutral-300 text-sm leading-relaxed mb-8 italic">
                 {t.quote}
@@ -562,14 +566,14 @@ function TrustSection() {
   ];
 
   return (
-    <section className="bg-neutral-900 py-20 border-y border-neutral-800">
+    <section className="bg-neutral-900 py-28 border-y border-neutral-800">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-10">
+        <div className="text-center mb-14">
           <p className="text-neutral-500 text-xs tracking-[0.4em] uppercase">
             Trusted by innovative companies across East Africa
           </p>
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
           {logos.map((l) => (
             <div
               key={l}
@@ -586,16 +590,16 @@ function TrustSection() {
 
 function AboutSection() {
   return (
-    <section id="about" className="bg-neutral-950 py-28 relative overflow-hidden">
+    <section id="about" className="bg-neutral-950 py-36 relative overflow-hidden">
       {/* Big decorative letter */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2 text-[280px] font-bold text-neutral-900 select-none pointer-events-none leading-none hidden xl:block">
         J
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-20 items-center">
           <div>
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-12 bg-red-600" />
               <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
                 About Us
@@ -617,7 +621,7 @@ function AboutSection() {
               write is in service of that belief.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-8">
               {[
                 { label: "Founded", value: "2018" },
                 { label: "Headquarters", value: "Nairobi, KE" },
@@ -635,7 +639,7 @@ function AboutSection() {
           </div>
 
           {/* Values */}
-          <div className="space-y-4">
+          <div className="space-y-5">
             {[
               {
                 num: "01",
@@ -660,7 +664,7 @@ function AboutSection() {
             ].map((v) => (
               <div
                 key={v.num}
-                className="flex gap-6 p-6 bg-neutral-900 hover:bg-neutral-800 transition-colors"
+                className="flex gap-6 p-8 bg-neutral-900 hover:bg-neutral-800 transition-colors"
               >
                 <div className="text-red-700 font-bold text-sm tracking-widest flex-shrink-0 mt-0.5">
                   {v.num}
@@ -682,7 +686,7 @@ function AboutSection() {
 
 function CTASection() {
   return (
-    <section className="bg-red-700 py-28 relative overflow-hidden">
+    <section className="bg-red-700 py-36 relative overflow-hidden">
       {/* Noise-like overlay */}
       <div
         className="absolute inset-0 opacity-10"
@@ -703,7 +707,7 @@ function CTASection() {
           <br />
           <span className="text-red-200">remarkable.</span>
         </h2>
-        <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-12">
+        <p className="text-red-200 text-lg max-w-2xl mx-auto leading-relaxed mb-16">
           Whether you have a fully-scoped brief or just an idea on a napkin —
           we're ready to listen. Free discovery call, no commitment.
         </p>
@@ -742,12 +746,12 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="bg-neutral-950 py-28 relative">
+    <section id="contact" className="bg-neutral-950 py-36 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-20">
           {/* Left info */}
           <div>
-            <div className="flex items-center gap-4 mb-4">
+            <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-12 bg-red-600" />
               <span className="text-red-500 text-xs tracking-[0.4em] uppercase">
                 Contact
@@ -863,12 +867,16 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="bg-neutral-950 border-t border-neutral-900 py-10">
+    <footer className="bg-neutral-950 border-t border-neutral-900 py-16">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-red-600 rotate-45 flex items-center justify-center">
-            <span className="text-white text-xs font-bold -rotate-45">JS</span>
-          </div>
+          <img
+            src={jamiiLogo}
+            alt="Jamii SoTech logo"
+            className="h-9 w-auto object-contain"
+            style={{ maxWidth: "140px" }}
+          />
+
           <span className="text-neutral-400 text-sm tracking-widest uppercase">
             Jamii SoTech LTD
           </span>
